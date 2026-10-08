@@ -545,15 +545,15 @@ make -j$(nproc)
 产物在 `bin/targets/qualcommbe/ipq95xx/`：`...-initramfs-uImage.itb` 改名 `initramfs.itb` 放 `tftp-root/`，
 `...-squashfs-sysupgrade.bin` 用来写 eMMC（第四章路线 B）。
 
-> ⚠️ `make target/linux/compile` **不会重建 DTB**，改了 DTS 必须手工重建：
->
-> ```bash
-> LINUX=build_dir/target-aarch64_cortex-a53_musl/linux-qualcommbe_ipq95xx/linux-6.18.52
-> cpp -nostdinc -I $LINUX/arch/arm64/boot/dts -I $LINUX/arch/arm64/boot/dts/qcom \
->     -I target/linux/qualcommbe/dts -I $LINUX/include -undef -D__DTS__ \
->     -x assembler-with-cpp target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts -o /tmp/sbe.dts
-> dtc -I dts -O dtb /tmp/sbe.dts -o /tmp/sbe.dtb
-> ```
+**⚠️ 注意：`make target/linux/compile` 不会重建 DTB**，改了 DTS 必须手工重建：
+
+```bash
+LINUX=build_dir/target-aarch64_cortex-a53_musl/linux-qualcommbe_ipq95xx/linux-6.18.52
+cpp -nostdinc -I $LINUX/arch/arm64/boot/dts -I $LINUX/arch/arm64/boot/dts/qcom \
+    -I target/linux/qualcommbe/dts -I $LINUX/include -undef -D__DTS__ \
+    -x assembler-with-cpp target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts -o /tmp/sbe.dts
+dtc -I dts -O dtb /tmp/sbe.dts -o /tmp/sbe.dtb
+```
 
 ---
 
