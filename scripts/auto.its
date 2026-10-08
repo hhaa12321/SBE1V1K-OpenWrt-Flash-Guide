@@ -1,0 +1,29 @@
+/dts-v1/;
+
+/ {
+	description = "SBE1V1K recovery launcher";
+	#address-cells = <1>;
+
+	images {
+		RTQ7300T {
+			description = "model marker";
+			data = [00];
+			type = "firmware";
+			arch = "arm";
+			compression = "none";
+			hash-1 {
+				algo = "sha256";
+			};
+		};
+		script {
+			description = "boot OpenWrt initramfs";
+			data = /incbin/("boot.cmd");
+			type = "script";
+			arch = "arm";
+			compression = "none";
+			hash-1 {
+				algo = "sha256";
+			};
+		};
+	};
+};

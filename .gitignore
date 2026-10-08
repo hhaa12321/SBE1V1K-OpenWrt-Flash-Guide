@@ -1,0 +1,6 @@
+logs/
+tftp-root/initramfs*.itb
+tftp-root/*.bin
+tftp-root/test-kernel.itb
+.agents/
+.codegraph/
